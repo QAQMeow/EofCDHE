@@ -10,11 +10,9 @@ import rasterio
 import joblib
 import pickle
 import numpy as np
-import h5py
-from scipy.interpolate import griddata, RectBivariateSpline
-import netCDF4 as nc
+
 from PIL import Image
-import matplotlib.pyplot as plt
+
 def getCG():
     
     

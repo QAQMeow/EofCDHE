@@ -288,7 +288,7 @@ def plotall(A):
    
 
     # 定义颜色（可根据需要调整，模拟类似你图中的颜色分层 ）
-    colors =  ['#C2607A', '#E5BF67', '#ADADAB', ]
+    colors = ['#b02425', '#Faa419', '#4583B6', ]
     cb = ['h','p','v']
     
     # 为每个子图绘制内容
@@ -360,7 +360,7 @@ def plotall(A):
     
     # 将图例添加到整个图形（而非单个子图）
     fig.legend(
-        [h[0],h[2],h[4]], ['Cimate change','Pop.growth','Vulnerable pop'],
+        [h[0],h[2],h[4]], ['Cimate change','Pop.growth','Fraction change'],
         loc='lower center',  # 位置：底部中央
         ncol=3,  # 图例列数
         bbox_to_anchor=(0.5, -0.02),  # 微调位置（相对于图形）

@@ -246,7 +246,7 @@ barls = []
 for i in range(3):
     for j in range(3):
         ax = fig.add_subplot(gs[i, j])
-        d1 = np.nanmean(Data[va[j]]['d1'][(hy>=1995),:,:],axis=0)
+        d1 = np.squeeze(Data[va[j]]['d1'][(hy==2000),:,:])
         d2 = np.nanmean(Data[va[j]]['d2'][sn[i]][(fy>=2081)&(fy<=2100),:,:],axis=0)
         vmax = np.nanpercentile(np.nanmean(Data[va[j]]['d2']['ssp585'][(fy>=2081),:,:],axis=0),75)
         detla_d = d2-d1
@@ -267,5 +267,11 @@ for j in range(3):
 fig.subplots_adjust(left=0,right=1,top=1,bottom=0.1,wspace=0.02,hspace=0.01)
 
 
-
+plt.savefig(
+    '../Fig/Fig3.jpg',  # 文件名（保存到当前目录，也可指定绝对路径）
+    dpi=300,                 # 分辨率（印刷级300dpi）
+    bbox_inches='tight',     # 去除空白边框
+    
+    facecolor='white'        # 背景色（避免透明/灰色背景）
+)
 

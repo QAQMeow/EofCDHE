@@ -27,14 +27,14 @@ lat1 = Maskdata['lat']
 lon1 = Maskdata['lon']
 
 data = nc.Dataset('H:/BR/Data/Asia/scdhi/asia_scdhi_1981_2020.nc')
-lonBR = data['lon']
-latBR = data['lat']
+lonAS = data['lon']
+latAS = data['lat']
 scdhi = data['scdhi']
-[LONB,LATB] = np.meshgrid(lonBR,latBR)
+[LONA,LATA] = np.meshgrid(lonAS,latAS)
 
 # lat = mat_data['BR_grid'][0]
 # lon = mat_data['BR_grid'][1]
-points  = np.array([LONB[~np.isnan(scdhi[200,:,:])].data,LATB[~np.isnan(scdhi[200,:,:])].data]).T
+points  = np.array([LONA[~np.isnan(scdhi[200,:,:])].data,LATA[~np.isnan(scdhi[200,:,:])].data]).T
 
 
 def fliplrMap(data):
@@ -141,13 +141,13 @@ for i in range(600):
 
 for i in range(210):
     for j in range(341):
-        A05[i,j] = calculate_grid_area(latBR[i], lonBR[j], 0.5)
+        A05[i,j] = calculate_grid_area(latAS[i], lonAS[j], 0.5)
 
 
 POP = {}
 
 for s in ['SSP1','SSP2','SSP3','SSP5']:
-    PopBR = {}
+    PopAS = {}
     for i in range(2020,2101,5):
         fr ='../data/futurepop/'+s+'_'+str(i)+'_025.tif'
         ds = rasterio.open(fr)
@@ -161,10 +161,10 @@ for s in ['SSP1','SSP2','SSP3','SSP5']:
          
         #interp_data =  interpolate_with_spline(Maskdata['lon'][:], Maskdata['lat'][:], Z, points )
         interp_data =  interpolate_with_griddata(X,Y, Z, points )
-        Brp  = sq2grid(interp_data, LATB, LONB, points) 
-        PopBR[str(i)] = Brp*A05
+        ASp  = sq2grid(interp_data, LATA, LONA, points) 
+        PopAS[str(i)] = ASp*A05
         print(s+' '+str(i))
-    POP[s] = PopBR
+    POP[s] = PopAS
         
     
     
